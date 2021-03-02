@@ -16,7 +16,7 @@ class TesteController extends Controller
     public function show($id){
         // Show a single resource
         $item = Teste::find($id);
-        return view('teste.show', ['item' => $item]);
+        return view("teste.show", ["item" => $item]);
     }
 
     public function create() {
@@ -26,6 +26,12 @@ class TesteController extends Controller
 
     public function store() {
         // Persist the new resource
+
+        request()->validate([
+            "title" => ["required", "min:2", "max:255"],
+            "subTitle" => ["required", "min:2", "max:255"],
+            "text" => ["required", "min:2", "max:255"]
+        ]);
 
         $teste = new Teste();
 
@@ -44,11 +50,17 @@ class TesteController extends Controller
         // Find the data tha is associated with the id
         $result = Teste::find($id);
 
-        return view("teste.edit", ['teste' => $result]);
+        return view("teste.edit", ["teste" => $result]);
     }
 
     public function update($id) {
         // Persist the edited resource
+
+        request()->validate([
+            "title" => ["required", "min:2", "max:255"],
+            "subTitle" => ["required", "min:2", "max:255"],
+            "text" => ["required", "min:2", "max:255"]
+        ]);
 
         $teste = Teste::find($id);
 

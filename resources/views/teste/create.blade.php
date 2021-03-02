@@ -12,7 +12,17 @@
                     <label class="label" for="title">Title</label>
 
                     <div class="control">
-                        <input class="input" type="text" name="title" id="">
+                        <input 
+                            class="input @error('title') is-danger @enderror" 
+                            type="text" 
+                            name="title" 
+                            required
+                            value="{{ old('title') }}"
+                        >
+
+                        @error('title')
+                            <p>{{ $errors->first('title') }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -20,7 +30,16 @@
                     <label class="label" for="subTitle">Subtitle</label>
 
                     <div class="control">
-                        <input class="input" type="text" name="subTitle" id="">
+                        <input 
+                            class="input @error('title') is-danger @enderror" 
+                            type="text" 
+                            name="subTitle" 
+                            required
+                            value="{{ old('subTitle') }}"    
+                        >
+                        @error('subTitle')
+                            <p>{{ $errors->first('subTitle') }}</p>
+                        @enderror
                     </div>
                 </div>
 
@@ -28,7 +47,10 @@
                     <label class="label" for="text">Text</label>
 
                     <div class="control">
-                        <textarea name="text" id="" cols="30" rows="10"></textarea>
+                        <textarea name="text" cols="30" rows="10">{{  old('text') }}</textarea>
+                        @error('text')
+                            <p>{{ $errors->first('text') }}</p>
+                        @enderror
                     </div>
                 </div>
 

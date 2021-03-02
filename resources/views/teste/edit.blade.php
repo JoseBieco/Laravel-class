@@ -15,14 +15,20 @@
 
                 <div class="control">
                     <input class="input" type="text" name="title" value="{{ $teste->title }}">
+                    @error('title')
+                        <p>{{ $errors->first('title') }}</p>
+                    @enderror
                 </div>
             </div>
 
             <div class="field">
                 <label class="label" for="subTitle">Subtitle</label>
 
-                <div class="control">
+                <div class="control1">
                     <input class="input" type="text" name="subTitle" value="{{ $teste->subTitle }}">
+                    @error('subTitle')
+                        <p>{{ $errors->first('subTitle') }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -31,6 +37,9 @@
 
                 <div class="control">
                     <textarea name="text" id="" cols="30" rows="10">{{ $teste->text }}</textarea>
+                    @error('text')
+                        <p>{{ $errors->first('text') }}</p>
+                    @enderror
                 </div>
             </div>
 
