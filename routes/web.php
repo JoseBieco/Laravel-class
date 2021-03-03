@@ -22,12 +22,12 @@ Route::get('/', function () {
 });
 
 
-Route::get("/testes", [TesteController::class, "index"]);
+Route::get("/testes", [TesteController::class, "index"])->name('testes.index');
 Route::post("/testes", [TesteController::class, "store"]);
 Route::get("/testes/create", [TesteController::class, "create"]);
-Route::get("/testes/{id}", [TesteController::class, "show"]);
-Route::get("/testes/{id}/edit", [TesteController::class, "edit"]);
-Route::put("/testes/{id}", [TesteController::class, "update"]);
+Route::get("/testes/{item}", [TesteController::class, "show"])->name('testes.show');
+Route::get("/testes/{item}/edit", [TesteController::class, "edit"]);
+Route::put("/testes/{item}", [TesteController::class, "update"]);
 
 
 /*

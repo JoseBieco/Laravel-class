@@ -13,9 +13,11 @@ class TesteController extends Controller
         $items = Teste::all();
         return view("teste.index", ["items" => $items]);
     }    
-    public function show($id){
+    public function show(Teste $item){
+        // Nome dentro do wildCard {} tem q ser igual ao nome da variavel
+        // Article::where('id', idFromUrl)->first();
         // Show a single resource
-        $item = Teste::find($id);
+        // $item = Teste::findOrFail("id");
         return view("teste.show", ["item" => $item]);
     }
 
@@ -27,52 +29,82 @@ class TesteController extends Controller
     public function store() {
         // Persist the new resource
 
-        request()->validate([
-            "title" => ["required", "min:2", "max:255"],
-            "subTitle" => ["required", "min:2", "max:255"],
-            "text" => ["required", "min:2", "max:255"]
-        ]);
+        Teste::create($this->validateAtributes());
 
-        $teste = new Teste();
+        /*
+            Teste::create(request()->validate([
+                "title" => ["required", "min:2", "max:255"],
+                "subTitle" => ["required", "min:2", "max:255"],
+                "text" => ["required", "min:2", "max:255"]
+            ]));
+        */
+        /*
+            $teste = new Teste();
 
-        $teste->title = request("title");
-        $teste->subTitle = request("subTitle");
-        $teste->text = request("text");
+            $teste->title = request("title");
+            $teste->subTitle = request("subTitle");
+            $teste->text = request("text");
 
-        $teste->save();
+            $teste->save();
+        */
 
-        return redirect("/testes");
+        /*
+            Teste::create([
+                'title' => request('title'),
+                'subTitle' => request('subTitle'),
+                'text' => request('text')
+            ]);
+        */
+
+        return redirect(route("testes.index"));
     }
 
-    public function edit($id) {
+    public function edit(Teste $item) {
         // Show a view to edit an existing resource
 
         // Find the data tha is associated with the id
-        $result = Teste::find($id);
+        // $result = Teste::find($id);
 
-        return view("teste.edit", ["teste" => $result]);
+        return view("teste.edit", ["teste" => $item]);
     }
 
-    public function update($id) {
+    public function update(Teste $item) {
         // Persist the edited resource
 
-        request()->validate([
-            "title" => ["required", "min:2", "max:255"],
-            "subTitle" => ["required", "min:2", "max:255"],
-            "text" => ["required", "min:2", "max:255"]
-        ]);
+        /*
+            $validatedAtributes = request()->validate([
+                "title" => ["required", "min:2", "max:255"],
+                "subTitle" => ["required", "min:2", "max:255"],
+                "text" => ["required", "min:2", "max:255"]
+            ]);
+        */
 
-        $teste = Teste::find($id);
+        $item->update($this->validateAtributes());
 
-        $teste->title = request("title");
-        $teste->subTitle = request("subTitle");
-        $teste->text = request("text");
-        $teste->save();
+        // $teste = Teste::find($id);
 
-        return redirect("/testes/". $teste->id);
+        /*
+            $item->title = request("title");
+            $item->subTitle = request("subTitle");
+            $item->text = request("text");
+            $item->save();
+        */
+
+        // return redirect("/testes/". $item->id);
+        return redirect($this->path());
     }
 
     public function destroy() {
         // Delete the resource
+    }
+
+    protected function validateAtributes(){
+
+        return request()->validate([
+            "title" => ["required", "min:2", "max:255"],
+            "subTitle" => ["required", "min:2", "max:255"],
+            "text" => ["required", "min:2", "max:255"]
+        ]);
+        
     }
 }

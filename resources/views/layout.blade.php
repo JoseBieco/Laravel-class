@@ -49,7 +49,7 @@
     <div class="nav-bar">
         <ul>
             <li class="{{ Request::path() === '/' ? 'current-page' : ''}}" accesskey="1"><a href="/">Home</a></li>
-            <li class="{{ strpos(Request::url(), '/testes') ? 'current-page' : ''}}" accesskey="2"><a href="/testes">Teste</a></li>
+            <li class="{{ strpos(Request::url(), '/testes') ? 'current-page' : ''}}" accesskey="2"><a href="{{ route("testes.index") }}">Teste</a></li>
             <li class="{{ Request::path() === 'contact' ? 'current-page' : ''}}" accesskey="3"><a href="/contact">Contact</a></li>
         </ul>
     </div>
