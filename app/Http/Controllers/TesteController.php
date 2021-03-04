@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teste;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TesteController extends Controller
@@ -10,7 +11,13 @@ class TesteController extends Controller
 
     public function index() {
         // Show a list of resources
-        $items = Teste::all();
+
+        if(request('tag')) {
+            $items = Tag::where('name', request('tag'))->firstOrFail()->testes;
+        }else {
+            $items = Teste::all();
+        }
+
         return view("teste.index", ["items" => $items]);
     }    
     public function show(Teste $item){
