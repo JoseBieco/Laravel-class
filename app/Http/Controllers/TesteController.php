@@ -91,7 +91,7 @@ class TesteController extends Controller
         */
 
         // return redirect("/testes/". $item->id);
-        return redirect($this->path());
+        return redirect($item->path());
     }
 
     public function destroy() {
@@ -99,8 +99,8 @@ class TesteController extends Controller
     }
 
     protected function validateAtributes(){
-
         return request()->validate([
+            "user_id" => ["required"],
             "title" => ["required", "min:2", "max:255"],
             "subTitle" => ["required", "min:2", "max:255"],
             "text" => ["required", "min:2", "max:255"]

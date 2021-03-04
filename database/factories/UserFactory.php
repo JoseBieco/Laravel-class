@@ -17,7 +17,11 @@ class UserFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
+     *  
+     * Create in tinker {
+     *      User::factory()->create();
+     * } 
+     * 
      * @return array
      */
     public function definition()

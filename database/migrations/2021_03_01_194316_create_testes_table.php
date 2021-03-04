@@ -15,10 +15,16 @@ class CreateTestesTable extends Migration
     {
         Schema::create('testes', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('subTitle');
             $table->string('text');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

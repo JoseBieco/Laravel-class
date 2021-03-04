@@ -10,6 +10,18 @@
             @csrf
             @method("PUT")
 
+
+            <div class="field">
+                <label class="label" for="user_id">user_id</label>
+
+                <div class="control">
+                    <input class="input" type="number" name="user_id" value="{{ $teste->user_id }}">
+                    @error('user_id')
+                        <p>{{ $errors->first('user_id') }}</p>
+                    @enderror
+                </div>
+            </div>
+
             <div class="field">
                 <label class="label" for="title">Title</label>
 

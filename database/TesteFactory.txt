@@ -1,0 +1,41 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Teste;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Teste::class;
+
+    /**
+     * Define the model's default state.
+     *  
+     * Create in tinker {
+     *      User::factory()->create();
+     * } 
+     * 
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'user_id' => 1,
+            'title' => $this->faker->sentence,
+            'subTitle' => $this->faker->sentence,
+            'text' => $this->faker->paragraph
+        ];
+    }
+}
+
+
+use App\Models\Teste;
+Teste::factory()->create()
+
+composer dump-autoload

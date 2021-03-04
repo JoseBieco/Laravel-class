@@ -9,6 +9,24 @@
                 @csrf
 
                 <div class="field">
+                    <label class="label" for="user_id">user_id</label>
+
+                    <div class="control">
+                        <input 
+                            class="input @error('user_id') is-danger @enderror" 
+                            type="number" 
+                            name="user_id" 
+                            required
+                            value="{{ old('user_id') }}"
+                        >
+
+                        @error('title')
+                            <p>{{ $errors->first('title') }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="field">
                     <label class="label" for="title">Title</label>
 
                     <div class="control">
