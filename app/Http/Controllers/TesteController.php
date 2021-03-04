@@ -30,13 +30,22 @@ class TesteController extends Controller
 
     public function create() {
         // Show a view to create a new resource
-        return view("teste.create");
+        return view("teste.create", [
+            'tags' => Tag::all()
+        ]);
     }
 
     public function store() {
         // Persist the new resource
 
-        Teste::create($this->validateAtributes());
+        $teste = new Teste($this->validateAtributes());
+        $teste->user_id = 1;
+        $teste->save();
+
+        $teste->tags()->attach(request("tags"));
+
+
+        // Teste::create($this->validateAtributes());
 
         /*
             Teste::create(request()->validate([
@@ -110,7 +119,8 @@ class TesteController extends Controller
             "user_id" => ["required"],
             "title" => ["required", "min:2", "max:255"],
             "subTitle" => ["required", "min:2", "max:255"],
-            "text" => ["required", "min:2", "max:255"]
+            "text" => ["required", "min:2", "max:255"],
+            "tags" => "exists:tags,id"
         ]);
         
     }
